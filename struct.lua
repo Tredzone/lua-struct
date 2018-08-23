@@ -191,7 +191,13 @@ function struct.unpack(format, stream)
     end
   end
 
-  return unpack(vars)
+  if (_VERSION ~= "Lua 5.1") then
+    -- lua 5.2, 5.3
+    return table.unpack(vars)
+  else
+    -- lua 5.1
+    return unpack(vars)
+  end
 end
 
 return struct
